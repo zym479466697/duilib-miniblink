@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>js_test</title>
+		<script type="text/javascript">
+            
+            function jsCallCpp1() {
+                jsCallCpp('http://www.flrhbz.com/alisvr', 100);
+            }
+			
+			function cppCallJs() {
+                alert("c++ call js");
+            }
+        </script>
+    </head>
+    <body>
+		<button onclick="jsCallCpp1()">js调用c++ 测试</button>
+    </body>
+</html>

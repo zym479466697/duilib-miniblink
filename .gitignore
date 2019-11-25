@@ -1,0 +1,10 @@
+bin
+DuiLib/Build
+DuiLib/DuiLib.vcxproj.user
+MiniblinkBrowser/Debug
+MiniblinkBrowser/Release
+MiniblinkBrowser/MiniblinkBrowser.vcxproj.user
+MiniblinkBrowser/MiniblinkBrowser.vcxproj.user
+MiniblinkBrowser.opensdf
+MiniblinkBrowser.sdf
+ipch

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="1000,700" sizebox="4,4,6,6" caption="0,0,0,50" mininfo="800,600" roundcorner="5,5">
+    <VerticalLayout enabled="true" bkimage="file=&apos;border.png&apos; corner=&apos;5,5,5,5&apos; hole=&apos;true&apos;">
+        <VerticalLayout enabled="true" height="50" bkimage="titlebar.png">
+            <HorizontalLayout enabled="true" height="20">
+                <HorizontalLayout enabled="true" height="20">
+                    <Control float="true" pos="9,1,0,0" enabled="true" width="20" height="20" bkimage="theworld.png" />
+                    <Label text="MiniblinkBrowser" float="true" pos="36,2,0,0" enabled="true" width="200" height="18" textcolor="#00FFFFFF" disabledtextcolor="#FFA7A6AA" />
+                </HorizontalLayout>
+                <HorizontalLayout enabled="true" width="200" height="20">
+                    <Button name="minbtn" float="true" pos="129,0,0,0" enabled="true" width="32" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;title_min.png&apos; dest=&apos;0,0,32,20&apos; source=&apos;0,0,32,20&apos;" hotimage="file=&apos;title_min.png&apos; dest=&apos;0,0,32,20&apos; source=&apos;32,0,64,20&apos;" pushedimage="file=&apos;title_min.png&apos; dest=&apos;0,0,32,20&apos; source=&apos;64,0,96,20&apos;" />
+                    <Button name="closebtn" float="true" pos="168,0,0,0" enabled="true" width="32" height="21" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;title_close.png&apos; dest=&apos;0,0,32,20&apos; source=&apos;0,0,32,20&apos;" hotimage="file=&apos;title_close.png&apos; dest=&apos;0,0,32,20&apos; source=&apos;32,0,64,20&apos;" pushedimage="file=&apos;title_close.png&apos; dest=&apos;0,0,32,20&apos; source=&apos;64,0,96,20&apos;" />
+                </HorizontalLayout>
+            </HorizontalLayout>
+        </VerticalLayout>
+        <HorizontalLayout enabled="true" height="32" bkimage="tabbar.png">
+            <HorizontalLayout enabled="true">
+                <HorizontalLayout name="IContainer" enabled="true" height="32">
+                    <HorizontalLayout name="Item0" enabled="true" maxwidth="174">
+                        <Option enabled="true" height="30" maxwidth="174" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;tabitem.png&apos; source=&apos;0,0,174,32&apos;" hotimage="file=&apos;tabitem.png&apos; source=&apos;174,0,348,32&apos;" pushedimage="file=&apos;tabitem.png&apos; source=&apos;348,0,522,32&apos;" group="group1" selected="true" selectedimage="file=&apos;tabitem.png&apos; source=&apos;348,0,522,32&apos;" />
+                        <Button float="true" pos="-12,12,0,0" enabled="true" width="12" height="12" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;tab_close.png&apos; source=&apos;0,0,12,12&apos;" hotimage="file=&apos;tab_close.png&apos; source=&apos;12,0,24,12&apos;" pushedimage="file=&apos;tab_close.png&apos; source=&apos;24,0,36,12&apos;" />
+                    </HorizontalLayout>
+                    <Button name="NewItemBtn" enabled="true" width="30" height="30" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;tab_new.png&apos; dest=&apos;0,0,21,28&apos; source=&apos;0,0,21,28&apos;" hotimage="file=&apos;tab_new.png&apos; dest=&apos;0,0,21,28&apos; source=&apos;21,0,42,28&apos;" pushedimage="file=&apos;tab_new.png&apos; dest=&apos;0,0,21,28&apos; source=&apos;42,0,63,28&apos;" />
+                </HorizontalLayout>
+                <HorizontalLayout enabled="true" width="50" height="32">
+                    <Button name="GoLeftBtn" float="true" pos="1,0,0,0" enabled="true" width="19" height="31" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;tabscrollleft.png&apos; dest=&apos;0,0,19,30&apos; source=&apos;0,0,19,30&apos;" hotimage="file=&apos;tabscrollleft.png&apos; dest=&apos;0,0,19,30&apos; source=&apos;19,0,38,30&apos;" pushedimage="file=&apos;tabscrollleft.png&apos; dest=&apos;0,0,19,30&apos; source=&apos;38,0,57,30&apos;" disabledimage="file=&apos;tabscrollleft.png&apos; dest=&apos;0,0,19,30&apos; source=&apos;57,0,76,30&apos;" />
+                    <Button name="GoRightBtn" float="true" pos="24,0,0,0" enabled="true" width="19" height="31" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;tabscrollright.png&apos; dest=&apos;0,0,19,30&apos; source=&apos;0,0,19,30&apos;" hotimage="file=&apos;tabscrollright.png&apos; dest=&apos;0,0,19,30&apos; source=&apos;19,0,38,30&apos;" pushedimage="file=&apos;tabscrollright.png&apos; dest=&apos;0,0,19,30&apos; source=&apos;38,0,57,30&apos;" disabledimage="file=&apos;tabscrollright.png&apos; dest=&apos;0,0,19,30&apos; source=&apos;57,0,76,30&apos;" />
+                </HorizontalLayout>
+            </HorizontalLayout>
+        </HorizontalLayout>
+        <HorizontalLayout enabled="true">
+            <HorizontalLayout enabled="true" width="2" bkimage="borderleft.png" />
+            <wkeWebKit enabled="true" float="false" height="0" name="wke" width="0" />
+            <HorizontalLayout enabled="true" width="2" bkimage="borderright.png" />
+        </HorizontalLayout>
+        <HorizontalLayout enabled="true" height="22" bkimage="statusbar.png">
+            <HorizontalLayout enabled="true" width="150" height="22">
+                <Label text="状态栏" enabled="true" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            </HorizontalLayout>
+        </HorizontalLayout>
+    </VerticalLayout>
+</Window>
