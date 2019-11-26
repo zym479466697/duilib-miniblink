@@ -92,11 +92,11 @@ xcopy /Y .\html\* ..\bin\$(Configuration)\html</Command>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainFrameWnd.cpp" />
-    <ClCompile Include="WkeWebKitUI.cpp" />
+    <ClCompile Include="WkeWebkitUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainFrameWnd.h" />
-    <ClInclude Include="WkeWebKitUI.h" />
+    <ClInclude Include="WkeWebkitUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

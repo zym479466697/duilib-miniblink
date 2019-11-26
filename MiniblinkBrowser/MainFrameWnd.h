@@ -3,7 +3,7 @@
 
 #include <windows.h>
 #include <objbase.h>
-#include "WkeWebKitUI.h"
+#include "WkeWebkitUI.h"
 #include "..\DuiLib\UIlib.h"
 using namespace DuiLib;
 

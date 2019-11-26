@@ -1,6 +1,6 @@
 #include <windows.h>
 #include "MainFrameWnd.h"
-#include "WkeWebKitUI.h"
+#include "WkeWebkitUI.h"
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
 {

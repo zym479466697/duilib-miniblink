@@ -21,7 +21,7 @@
     <ClCompile Include="MainFrameWnd.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="WkeWebKitUI.cpp">
+    <ClCompile Include="WkeWebkitUI.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,7 @@
     <ClInclude Include="MainFrameWnd.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="WkeWebKitUI.h">
+    <ClInclude Include="WkeWebkitUI.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
