@@ -6,7 +6,7 @@
 #include "..\DuiLib\UIlib.h"
 using namespace DuiLib;
 
-#include "./wke.h"
+#include "wke.h"
 using namespace wke;
 
 void LogFormat(const TCHAR* format, ...);
@@ -25,18 +25,18 @@ public:
 };
 
 
-class CWkeWebKitUI : 
+class CWkeWebkitUI : 
 	public CControlUI, 
 	public IMessageFilterUI
 {
 public:
-	CWkeWebKitUI(void);
-	~CWkeWebKitUI(void);
+	CWkeWebkitUI(void);
+	virtual ~CWkeWebkitUI(void);
 
 	//init wke
-	static void WkeWebKit_Init();
+	static void WkeWebkit_Init();
 	//shutdown wke
-	static void WkeWebKit_Shutdown();
+	static void WkeWebkit_Shutdown();
 
 	static void  OnWkeTitleChanged(wkeWebView webView, void* param, const wkeString title);
 	static void  OnWkeUrlChanged(wkeWebView webView, void* param, const wkeString url);

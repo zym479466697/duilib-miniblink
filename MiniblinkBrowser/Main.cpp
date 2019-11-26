@@ -4,7 +4,7 @@
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
 {
-	CWkeWebKitUI::WkeWebKit_Init();
+	CWkeWebkitUI::WkeWebkit_Init();
 
 	CPaintManagerUI::SetInstance(hInstance);
 	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("\\skin"));
@@ -17,6 +17,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 
 	CPaintManagerUI::MessageLoop();
 
-	CWkeWebKitUI::WkeWebKit_Shutdown();
+	CWkeWebkitUI::WkeWebkit_Shutdown();
 	return 0;
 }

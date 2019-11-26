@@ -4,9 +4,7 @@
 #include <windows.h>
 #include <objbase.h>
 #include "WkeWebKitUI.h"
-
 #include "..\DuiLib\UIlib.h"
-
 using namespace DuiLib;
 
 #ifdef _DEBUG
@@ -33,12 +31,13 @@ protected:
 	virtual void InitWindow();
 	virtual void Notify(TNotifyUI& msg);
 
+	//wke callback
 	virtual bool OnWkeNavigationCallback(wkeWebView webView, wkeNavigationType navigationType, const wkeString url);
 	virtual void OnWkeLoadingFinishCallback(wkeWebView webView, const wkeString url, wkeLoadingResult result, const wkeString failedReason);
 	virtual void OnWkeTitleChanged(wkeWebView webView, const wkeString title);
 	virtual void OnWkeUrlChanged(wkeWebView webView, const wkeString url);
 private:
-	CWkeWebKitUI* m_pWke;
+	CWkeWebkitUI* m_pWke;
 };
 
 #endif /*__MAINFRAMEWND__H_*/

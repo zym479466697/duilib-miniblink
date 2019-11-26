@@ -1,4 +1,4 @@
-#include "WkeWebKitUI.h"
+#include "WkeWebkitUI.h"
 #include <Imm.h>
 #include <assert.h>
 #pragma comment(lib,"imm32.lib")
@@ -9,20 +9,20 @@ void LogFormat(const TCHAR* format, ...)
 	TCHAR szLog[4096] = {0};
 	va_list arglist;
 	va_start(arglist, format);
-	_vsnwprintf(szLog, 4096, format, arglist);
+	_vsnwprintf_s(szLog, 4096, format, arglist);
 	va_end(arglist);
 	OutputDebugString(szLog);
 	OutputDebugString(_T("\r\n"));
 }
 
-CWkeWebKitUI::CWkeWebKitUI(void) : m_byAlpha(255)
+CWkeWebkitUI::CWkeWebkitUI(void) : m_byAlpha(255)
 {
 	m_pWebView = NULL;
 	m_pWkeEvent = NULL;
 }
 
 
-CWkeWebKitUI::~CWkeWebKitUI(void)
+CWkeWebkitUI::~CWkeWebkitUI(void)
 {
 	if(m_pWebView)
 	{
@@ -31,29 +31,29 @@ CWkeWebKitUI::~CWkeWebKitUI(void)
 	}
 }
 
-void CWkeWebKitUI::WkeWebKit_Init()
+void CWkeWebkitUI::WkeWebkit_Init()
 {
 	wkeInit();
 }
 
-void CWkeWebKitUI::WkeWebKit_Shutdown()
+void CWkeWebkitUI::WkeWebkit_Shutdown()
 {
 	wkeShutdown();
 }
 
 
-LPCTSTR CWkeWebKitUI::GetClass() const
+LPCTSTR CWkeWebkitUI::GetClass() const
 {
 	return _T("wkeWebKit");
 }
 
-LPVOID CWkeWebKitUI::GetInterface(LPCTSTR pstrName)
+LPVOID CWkeWebkitUI::GetInterface(LPCTSTR pstrName)
 {
-	if( _tcscmp(pstrName, _T("wkeWebKit")) == 0 ) return static_cast<CWkeWebKitUI*>(this);
+	if( _tcscmp(pstrName, _T("wkeWebKit")) == 0 ) return static_cast<CWkeWebkitUI*>(this);
 	return CControlUI::GetInterface(pstrName);
 }
 
-void CWkeWebKitUI::DoInit()
+void CWkeWebkitUI::DoInit()
 {
 	CControlUI::DoInit();
 	m_pWebView = (IWebView*)wkeCreateWebView();
@@ -69,7 +69,7 @@ void CWkeWebKitUI::DoInit()
 	GetManager()->AddMessageFilter(this);
 }
 
-void CWkeWebKitUI::SetPos(RECT rc, bool bNeedInvalidate)
+void CWkeWebkitUI::SetPos(RECT rc, bool bNeedInvalidate)
 {
 	CControlUI::SetPos(rc, bNeedInvalidate);
 
@@ -80,7 +80,7 @@ void CWkeWebKitUI::SetPos(RECT rc, bool bNeedInvalidate)
 }
 
 
-void CWkeWebKitUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+void CWkeWebkitUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
 	if( _tcscmp(pstrName, _T("alpha")) == 0 ) {
 		LPTSTR pstr = NULL;
@@ -92,7 +92,7 @@ void CWkeWebKitUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	}
 }
 
-bool CWkeWebKitUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+bool CWkeWebkitUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 {
 	if(!m_pWebView)
 	{
@@ -106,7 +106,6 @@ bool CWkeWebKitUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopContro
 	::IntersectRect(&rcInvalid, &rcClip,&rcClient);
 	int invalidWidth = rcInvalid.right - rcInvalid.left;
 	int invalidHeight = rcInvalid.bottom - rcInvalid.top;
-
 	HDC hdcWke = wkeGetViewDC((wkeWebView)m_pWebView);
 	BOOL ret = false;
 	if(m_byAlpha != 0xff)
@@ -124,9 +123,13 @@ bool CWkeWebKitUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopContro
 }
 
 
-LRESULT CWkeWebKitUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled)
+LRESULT CWkeWebkitUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled)
 {
 	bHandled = false;
+	if (!IsVisible())
+	{
+		return 0;
+	}
 	switch(uMsg)
 	{
 	case WM_SETFOCUS:
@@ -186,37 +189,37 @@ LRESULT CWkeWebKitUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bo
 	return false;
 }
 
-void CWkeWebKitUI::LoadUrl(LPCTSTR pstrUrl)
+void CWkeWebkitUI::LoadUrl(LPCTSTR pstrUrl)
 {
 	m_pWebView->loadURL(pstrUrl);
 }
 
-void CWkeWebKitUI::LoadFile(LPCTSTR pstrFile)
+void CWkeWebkitUI::LoadFile(LPCTSTR pstrFile)
 {
 	m_pWebView->loadFile(pstrFile);
 }
 
-void CWkeWebKitUI::SetWkeEvent(IWkeEvent* pWkeEvent)
+void CWkeWebkitUI::SetWkeEvent(IWkeEvent* pWkeEvent)
 {
 	m_pWkeEvent = pWkeEvent;
 }
 
-jsValue CWkeWebKitUI::RunJs(LPCTSTR pstrJs)
+jsValue CWkeWebkitUI::RunJs(LPCTSTR pstrJs)
 {
 	return m_pWebView->runJS(pstrJs);
 }
 
-bool CWkeWebKitUI::GoBack()
+bool CWkeWebkitUI::GoBack()
 {
 	return m_pWebView->goBack();
 }
 
-bool CWkeWebKitUI::GoForward()
+bool CWkeWebkitUI::GoForward()
 {
 	return m_pWebView->goForward();
 }
 
-bool CWkeWebKitUI::OnMouseEvent( UINT message, WPARAM wParam,LPARAM lParam)
+bool CWkeWebkitUI::OnMouseEvent( UINT message, WPARAM wParam,LPARAM lParam)
 {
 	RECT rcClient = GetClientPos();
 	POINT point = {GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)};
@@ -237,11 +240,11 @@ bool CWkeWebKitUI::OnMouseEvent( UINT message, WPARAM wParam,LPARAM lParam)
 	if (message == WM_LBUTTONDOWN || message == WM_MBUTTONDOWN || message == WM_RBUTTONDOWN)
 	{
 		SetFocus();
-		SetCapture(GetManager()->GetPaintWindow());
+		GetManager()->SetCapture();
 	}
 	else if (message == WM_LBUTTONUP || message == WM_MBUTTONUP || message == WM_RBUTTONUP)
 	{
-		ReleaseCapture();
+		GetManager()->ReleaseCapture();
 	}
 	
 	unsigned int flags = 0;
@@ -264,7 +267,7 @@ bool CWkeWebKitUI::OnMouseEvent( UINT message, WPARAM wParam,LPARAM lParam)
 	return bHandled;
 }
 
-bool CWkeWebKitUI::OnKeyDown( UINT uMsg, WPARAM wParam,LPARAM lParam )
+bool CWkeWebkitUI::OnKeyDown( UINT uMsg, WPARAM wParam,LPARAM lParam )
 {
 	unsigned int flags = 0;
 	if (HIWORD(lParam) & KF_REPEAT)
@@ -276,7 +279,7 @@ bool CWkeWebKitUI::OnKeyDown( UINT uMsg, WPARAM wParam,LPARAM lParam )
 	return bHandled;
 }
 
-bool CWkeWebKitUI::OnKeyUp( UINT uMsg, WPARAM wParam,LPARAM lParam)
+bool CWkeWebkitUI::OnKeyUp( UINT uMsg, WPARAM wParam,LPARAM lParam)
 {
 	unsigned int flags = 0;
 	if (HIWORD(lParam) & KF_REPEAT)
@@ -288,7 +291,7 @@ bool CWkeWebKitUI::OnKeyUp( UINT uMsg, WPARAM wParam,LPARAM lParam)
 	return bHandled;
 }
 
-bool CWkeWebKitUI::OnMouseWheel( UINT uMsg, WPARAM wParam,LPARAM lParam )
+bool CWkeWebkitUI::OnMouseWheel( UINT uMsg, WPARAM wParam,LPARAM lParam )
 {
 	POINT pt;
 	pt.x = GET_X_LPARAM(lParam);
@@ -320,7 +323,7 @@ bool CWkeWebKitUI::OnMouseWheel( UINT uMsg, WPARAM wParam,LPARAM lParam )
 	return bHandled;
 }
 
-bool CWkeWebKitUI::OnChar( UINT uMsg, WPARAM wParam,LPARAM lParam )
+bool CWkeWebkitUI::OnChar( UINT uMsg, WPARAM wParam,LPARAM lParam )
 {
 	unsigned int charCode = wParam;
 	unsigned int flags = 0;
@@ -335,7 +338,7 @@ bool CWkeWebKitUI::OnChar( UINT uMsg, WPARAM wParam,LPARAM lParam )
 	return bHandled;
 }
 
-bool CWkeWebKitUI::OnContextMenu( UINT uMsg, WPARAM wParam,LPARAM lParam)
+bool CWkeWebkitUI::OnContextMenu( UINT uMsg, WPARAM wParam,LPARAM lParam)
 {
 	POINT pt;
 	pt.x = GET_X_LPARAM(lParam);
@@ -360,7 +363,7 @@ bool CWkeWebKitUI::OnContextMenu( UINT uMsg, WPARAM wParam,LPARAM lParam)
 	return bHandled;
 }
 
-bool CWkeWebKitUI::OnImeStartComposition( UINT uMsg, WPARAM wParam,LPARAM lParam )
+bool CWkeWebkitUI::OnImeStartComposition( UINT uMsg, WPARAM wParam,LPARAM lParam )
 {
 	wkeRect caret = m_pWebView->getCaret();
 
@@ -388,7 +391,7 @@ bool CWkeWebKitUI::OnImeStartComposition( UINT uMsg, WPARAM wParam,LPARAM lParam
 	return true;
 }
 
-bool CWkeWebKitUI::OnSetCursor()
+bool CWkeWebkitUI::OnSetCursor()
 {
 	int cursorInfoType = wkeGetCursorInfoType((wkeWebView)m_pWebView);
 	HCURSOR hCur = NULL;
@@ -447,9 +450,9 @@ bool CWkeWebKitUI::OnSetCursor()
 }
 
 
-void CWkeWebKitUI::OnWkeTitleChanged(wkeWebView webView, void* param, const wkeString title)
+void CWkeWebkitUI::OnWkeTitleChanged(wkeWebView webView, void* param, const wkeString title)
 {
-	CWkeWebKitUI* pWkeUI =(CWkeWebKitUI*)param;
+	CWkeWebkitUI* pWkeUI =(CWkeWebkitUI*)param;
 	IWebView* pWebView = (IWebView*)webView;
 	if(pWkeUI && pWkeUI->m_pWkeEvent)
 	{
@@ -457,9 +460,9 @@ void CWkeWebKitUI::OnWkeTitleChanged(wkeWebView webView, void* param, const wkeS
 	}
 }
 
-void CWkeWebKitUI::OnWkeUrlChanged(wkeWebView webView, void* param, const wkeString url)
+void CWkeWebkitUI::OnWkeUrlChanged(wkeWebView webView, void* param, const wkeString url)
 {
-	CWkeWebKitUI* pWkeUI =(CWkeWebKitUI*)param;
+	CWkeWebkitUI* pWkeUI =(CWkeWebkitUI*)param;
 	IWebView* pWebView = (IWebView*)webView;
 	if(pWkeUI && pWkeUI->m_pWkeEvent)
 	{
@@ -467,9 +470,9 @@ void CWkeWebKitUI::OnWkeUrlChanged(wkeWebView webView, void* param, const wkeStr
 	}
 }
 
-void CWkeWebKitUI::OnWkeLoadingFinishCallback(wkeWebView webView, void* param, const wkeString url, wkeLoadingResult result, const wkeString failedReason)
+void CWkeWebkitUI::OnWkeLoadingFinishCallback(wkeWebView webView, void* param, const wkeString url, wkeLoadingResult result, const wkeString failedReason)
 {
-	CWkeWebKitUI* pWkeUI =(CWkeWebKitUI*)param;
+	CWkeWebkitUI* pWkeUI =(CWkeWebkitUI*)param;
 	IWebView* pWebView = (IWebView*)webView;
 	if(pWkeUI && pWkeUI->m_pWkeEvent)
 	{
@@ -478,9 +481,9 @@ void CWkeWebKitUI::OnWkeLoadingFinishCallback(wkeWebView webView, void* param, c
 }
 
 
-bool  CWkeWebKitUI::OnWkeNavigationCallback(wkeWebView webView, void* param, wkeNavigationType navigationType, const wkeString url)
+bool  CWkeWebkitUI::OnWkeNavigationCallback(wkeWebView webView, void* param, wkeNavigationType navigationType, const wkeString url)
 {
-	CWkeWebKitUI* pWkeUI =(CWkeWebKitUI*)param;
+	CWkeWebkitUI* pWkeUI =(CWkeWebkitUI*)param;
 	IWebView* pWebView = (IWebView*)webView;
 	if(pWkeUI && pWkeUI->m_pWkeEvent)
 	{
@@ -490,9 +493,9 @@ bool  CWkeWebKitUI::OnWkeNavigationCallback(wkeWebView webView, void* param, wke
 }
 
 
-void CWkeWebKitUI::OnWkePaintUpdatedCallback(wkeWebView webView, void* param, const HDC hdc, int x, int y, int cx, int cy)
+void CWkeWebkitUI::OnWkePaintUpdatedCallback(wkeWebView webView, void* param, const HDC hdc, int x, int y, int cx, int cy)
 {
-	CWkeWebKitUI* pWkeUI =(CWkeWebKitUI*)param;
+	CWkeWebkitUI* pWkeUI =(CWkeWebkitUI*)param;
 	IWebView* pWebView = (IWebView*)webView;
 	if(pWkeUI && pWebView == pWkeUI->m_pWebView)
 	{
@@ -500,7 +503,7 @@ void CWkeWebKitUI::OnWkePaintUpdatedCallback(wkeWebView webView, void* param, co
 	}
 }
 
-void CWkeWebKitUI::OnPaintUpdatedCallback(const HDC hdc, int x, int y, int cx, int cy)
+void CWkeWebkitUI::OnPaintUpdatedCallback(const HDC hdc, int x, int y, int cx, int cy)
 {
 	//RECT invalidateRc = {x, y, cx, cy};
 	//if( m_pManager != NULL ) m_pManager->Invalidate(invalidateRc);

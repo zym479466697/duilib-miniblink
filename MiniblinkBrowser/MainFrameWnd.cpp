@@ -39,7 +39,7 @@ LPCTSTR CMainFrameWnd::GetWindowClassName(void) const
 CControlUI* CMainFrameWnd::CreateControl(LPCTSTR pstrClass)
 {
 	if( _tcscmp(pstrClass, _T("wkeWebKit")) == 0 ) 
-		return new CWkeWebKitUI;
+		return new CWkeWebkitUI;
 	
 	return NULL;
 }
@@ -65,7 +65,7 @@ void CMainFrameWnd::InitWindow()
 	//js调用c++
 	jsBindFunction("jsCallCpp", jsCallCpp, 2);
 
-	m_pWke = static_cast<CWkeWebKitUI*>(m_PaintManager.FindControl(_T("wke")));
+	m_pWke = static_cast<CWkeWebkitUI*>(m_PaintManager.FindControl(_T("wke")));
 	m_pWke->SetWkeEvent(this);
 	//js调用c++测试
 	TCHAR exePath[1024] = {0};
