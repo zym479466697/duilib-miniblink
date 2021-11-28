@@ -8,6 +8,8 @@ duilib 接入miniblink
 
 3.要使用的话请遵守miniblink的相关协议
 
+### 效果图
+![image](https://github.com/zym479466697/duilib-miniblink/blob/master/Demo/demo.png)
 
 # 欢迎打赏
 支付宝![image](https://github.com/zym479466697/ScrCapture/blob/main/doc/%E6%94%AF%E4%BB%98%E5%AE%9D.png)
